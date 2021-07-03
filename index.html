@@ -1,16 +1,57 @@
+<!DOCTYPE html>
+<!-- saved from url=(0044)http://apps.amandaghassaei.com/ConwayShader/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <title>Conway Shader</title>
+
+    <meta name="viewport" content="width=device-width">
+
+    <link rel="stylesheet" type="text/css" href="./main.css">
+
+<script type="text/javascript" src="https://rawgit.com/patriciogonzalezvivo/glslCanvas/master/dist/GlslCanvas.js"></script>
+
+</head>
+<body>
+
+<canvas id="glslCanvas" data-fragment="
+// Author: Patricio Gonzalez Vivo
+#ifdef GL_ES
+precision mediump float;
+#endif
+
+vec3 inv(vec3 a){return 1.-a;}
+
+uniform float u_time;
+uniform vec2 u_resolution;
+
+void main( void ) {
+
+vec2 uv = ( gl_FragCoord.xy / u_resolution.y );
+
+float a = fract(sin(dot(floor(uv.xy*8.0+u_time*2.0),vec2(5.364,6.357)))*357.536);
+a=2.*a-1.;
+vec3 color = vec3(a, -a, abs(a));
+color = inv(color);
+
+gl_FragColor = vec4( color, 1.0 );
+}
+
+" width="800" height="600"></canvas>
+
+
+<div id="content">
 <p> <em> There is a branch of the world, where your problem is fixed. </em> </p>
 
 <h1> Welcome to the world of feedback loops, mass illusions and markets. </h1>
 <p> 
-Projects:
-sound is processed faster, so I set up a trigger alerts </br>
+<h3>Projects:</h3>
 visual processing takes 1/3 of a brain </br>
+sound is processed faster, so I set up a trigger alerts </br>
 	and 1/2 second. so we live in the past
+</p>
 
-Truths:
-Glyphosate
-
-So professional, so science!
+<p>
+So professional, so science! </br>
 I'm going to give a TED talk one day!
 </p>
 
@@ -21,17 +62,127 @@ I'm going to give a TED talk one day!
 	<li><a href="http://wet-night.gomix.me/">Tracking analytics</a></li>
 	<li><a href="http://ghv.artzub.com/#repo=solar&climit=100&user=ilyadorosh">Github visualisation | Our sunny summer project</a></li>
 </ul>
-<h3> Hope here </h3>
+<h3> Hope </h3>
 <ul>
 <li><a href="#">Mars</a></li>
+<li><strong><a href="https://www.slideshare.net/dmc500hats" target="_blank">Dave McClure</a></strong></li>
 </ul>
-<p><img src="Œuvre d'art.png"></p>
 <p> Bitcoin makes people happy, as somemething they discovered earlier than others, and make them feel superior to others. </p>
-<p> Clock is great way to reach a consensus. There is a master clock, and everybody synchronises. </p>
-<p> <a href="https://health.howstuffworks.com/wellness/drugs-alcohol/hangover.htm/printable">Alcohol</a> </p>
+</div>
 
-<iframe width="100%" height="300" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/users/11350871/favorites&amp;color=%23ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;show_teaser=true&amp;visual=true"></iframe>
-<iframe width="100%" height="300" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/users/40772021/favorites&amp;color=%23ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;show_teaser=true&amp;visual=true"></iframe>
-<iframe src="http://ghv.artzub.com/#repo=solar&climit=100&user=ilyadorosh" style="width: 90%; height: 300px" name="internal"></iframe>
 
-<strong><a href="https://www.slideshare.net/dmc500hats" target="_blank">Dave McClure</a></strong>
+</body>
+    <script>
+        var canvas = document.getElementById("glslCanvas");
+        var sandbox = new GlslCanvas(canvas);
+        var texCounter = 0;
+        var sandbox_content = "";
+        var sandbox_title = "";
+        var sandbox_author = "";
+        var sandbox_thumbnail = ""; 
+        canvas.style.width = '100%';
+        canvas.style.height = '100%';
+
+        function parseQuery (qstr) {
+            var query = {};
+            var a = qstr.split('&');
+            for (var i in a) {
+                var b = a[i].split('=');
+                query[decodeURIComponent(b[0])] = decodeURIComponent(b[1]);
+            }
+            return query;
+        }
+
+        function load(url) {
+            // Make the request and wait for the reply
+            fetch(url)
+                .then(function (response) {
+                    // If we get a positive response...
+                    if (response.status !== 200) {
+                        console.log('Error getting shader. Status code: ' + response.status);
+                        return;
+                    }
+                    // console.log(response);
+                    return response.text();
+                })
+                .then(function(content) {
+                    sandbox_content = content;
+                    sandbox.load(content);
+
+                    var title = addTitle();
+                    var author = addAuthor();
+                    if ( title === "unknown" && author === "unknown") {
+                        document.getElementById("credits").style.visibility = "hidden";
+                    } else {
+                        document.getElementById("credits").style.visibility = "visible";
+                    }
+
+                    addMeta({
+                                'title' : title + ' by ' + author,
+                                'type' : 'website',
+                                'url': window.location.href,
+                                'image': sandbox_thumbnail
+                            })                 
+                })
+        }
+
+        function addTitle() {
+            var result = sandbox_content.match(/\/\/\s*[T|t]itle\s*:\s*([\w|\s|\@|\(|\)|\-|\_]*)/i);
+            if (result && !(result[1] === ' ' || result[1] === '')) {
+                sandbox_title = result[1].replace(/(\r\n|\n|\r)/gm, '');
+                var title_el = document.getElementById("title").innerHTML = sandbox_title;
+                return sandbox_title;
+            }
+            else {
+                return "unknown";
+            }
+        }
+
+        function addAuthor() {
+            var result = sandbox_content.match(/\/\/\s*[A|a]uthor\s*[\:]?\s*([\w|\s|\@|\(|\)|\-|\_]*)/i);
+            if (result && !(result[1] === ' ' || result[1] === '')) {
+                sandbox_author = result[1].replace(/(\r\n|\n|\r)/gm, '');
+                document.getElementById("author").innerHTML = sandbox_author;
+                return sandbox_author;
+            }
+            else {
+                return "unknown";
+            }
+        }
+
+        function addMeta(obj) {
+            for (var key in obj) {
+                var meta = document.createElement('meta');
+                meta.setAttribute('og:'+key, obj[key]);
+                document.getElementsByTagName('head')[0].appendChild(meta);
+            }              
+        }
+
+        var query = parseQuery(window.location.search.slice(1));
+        if (query && query.log) {
+            sandbox_thumbnail = 'https://thebookofshaders.com/log/' + query.log + '.png';
+            load('https://thebookofshaders.com/log/' + query.log + '.frag');
+        }
+
+        if (window.location.hash !== '') {
+            var hashes = location.hash.split('&');
+            for (var i in hashes) {
+                var ext = hashes[i].substr(hashes[i].lastIndexOf('.') + 1);
+                var path = hashes[i];
+
+                // Extract hash if is present
+                if (path.search('#') === 0) {
+                    path = path.substr(1);
+                }
+
+                if (ext === 'frag') {
+                    load(path);
+                }
+                else if (ext === 'png' || ext === 'jpg' || ext === 'PNG' || ext === 'JPG') {
+                    sandbox.setUniform("u_tex"+texCounter.toString(), path);
+                    texCounter++;
+                }
+            }
+        }
+    </script>
+</html>
