@@ -37,8 +37,6 @@ canvas {
 
 #nav>ul
 { 
-overflow-x:hidden;
-white-space:nowrap; 
 height: 1em;
 width: 100%;
 } 
@@ -48,3 +46,26 @@ width: 100%;
 display:inline; 
 list-style: none;
 }   
+
+
+#nav a {
+    text-decoration: none;
+    border-top-right-radius: 0.5em;
+    padding: 4px 5px 0px 5px;
+    color: white;
+    background-color: #5c5c5c;
+    
+    display: inline-block;
+    min-width: 35px;
+    height: 25px;
+    padding: 10px 5px 3px 5px;
+    box-shadow: 2px 2px 2px black;
+}
+
+a {
+    color: black;
+
+    background-color: #5c5c5c;
+    text-decoration: none ;
+    box-shadow: 20px rgb(126, 123, 123);
+}
