@@ -25,5 +25,26 @@ canvas {
     left: 25px;
     background-color: rgb(0 0 0 / 58%);
     color: white;
-    padding: 12px;
+    padding: 20px;
+    border-radius: 10px;
 }
+
+#nav {
+    left: 0px;
+    top: 0px;
+    position: absolute;
+}
+
+#nav>ul
+{ 
+overflow-x:hidden;
+white-space:nowrap; 
+height: 1em;
+width: 100%;
+} 
+
+#nav li
+{ 
+display:inline; 
+list-style: none;
+}   
