@@ -1,5 +1,5 @@
 html {
-    margin:0;
+    scroll-behavior: smooth;
 }
 #glslCanvas {
     padding:0;
@@ -36,4 +36,12 @@ display:inline;
 list-style: none;
 }   
 
+img {
+    position: relative;
+    
+}
 
+#eg {
+    padding:30px;
+    border-radius: 30px;
+}

@@ -41,6 +41,7 @@
 		</a></li>
 
 		<li><a class="button" href="https://1tensor.keybase.pub/">Keybase</a></li>
+		<li>I make music and publish on <a class="button" href="https://soundcloud.com/ilyadorosh">Soundcloud</a> </li>
     </ul>
 </header>
 
@@ -52,10 +53,10 @@
 		
 	<h3>Projects I'm involved in:</h3>
 	<ul>
-		<li><a href="https://nooron.com/"> Nooron </a></li>
-		<li><a href="https://egora-ilp.org/">Egora</a></li>
-		<a class="button" href="https://321pay.wordpress.com/2022/02/24/experience-power/">Description in the Blogpost</a>
-		<a class="button" href="https://1tensor.keybase.pub/egora_improvement.txt">Some notes on Keybase</a>
+		<li><a href="https://nooron.com/"> Nooron </a>, the powerful tabular spreadsheet-like tool, called <a href="http://tabular.ponderate.com/">Ponderate</a></li>
+		<li><a href="https://egora-ilp.org/">Egora</a> where I added <a href="https://1tensor.keybase.pub/egora_improvement.txt">some feature requests</a></li>
+		<img src="https://i.redd.it/91574q87l7y91.png"/>
+		<a href="https://321pay.wordpress.com/2022/02/24/experience-power/"><img id="eg" src="https://raw.githubusercontent.com/ilyadorosh/Egora/master/vectorpaint.svg"/></a></br>
 		<!-- <li><a href="https://zenith-star-sword.glitch.me/">Q-vote</li> -->
 	</ul>
 
@@ -64,7 +65,8 @@
 	<p> 
 	<h3>Portfolio:</h3>
 	<ul>
-		<li><a href="http://tabular.ponderate.com/">Ponderate</a></li>
+		<li>I try stuff, like sirtuin gene activators, I even did a year of masters.  
+			I've studied <a href="https://en.wikipedia.org/wiki/Composition_of_the_human_body">biotech</a>.</li>
 		<li><a href="https://sleet-harp.glitch.me/">An Extinction Rebellion game</a></li>
 		<li><a href="https://ilyadorosh.github.io/angel5">A public health/enjoyment maps idea</a></li>
 		<li><a href="https://ilyadorosh.github.io/hexatron">A* search on a hexagonal grid</a></li>
@@ -79,9 +81,7 @@
 
 	<iframe src="https://calendar.google.com/calendar/embed?height=400&wkst=2&bgcolor=%23fB8000&ctz=Europe%2FParis&showTitle=0&showNav=1&showDate=1&showPrint=1&showTabs=1&showCalendars=1&showTz=1&src=aWx5YWRvcm9zaEBnbWFpbC5jb20&color=%237CB3ff" style="border-width:0" width="800" height="400" frameborder="0" scrolling="no"></iframe>
 	</br>
-	<a href="javascript:sandbox.load(string_frag_code)">Change the shader to tiles</a></br>
-	I make <a class="button" href="https://soundcloud.com/ilyadorosh">music and publish on Soundcloud</a> </br>
-	I've studied <a href="https://en.wikipedia.org/wiki/Composition_of_the_human_body">biotech</a>.
+	<a href="javascript:sandbox.load(string_frag_code)">Change the shader to tiles</a></br></br>
 </main>
 
 <canvas id="glslCanvas" data-fragment="
@@ -336,4 +336,14 @@ gl_FragColor = vec4( color, 1.0 );
 }
 `;
     </script>
+	<script>
+		var element = document.getElementById('eg');
+		window.addEventListener('scroll', function() { 
+    		scrollpos = (window.scrollY-200)/5;
+			thatcolor="hsla("+scrollpos+", 100%, 52%, 0.4)";
+			// console.log(thatcolor);
+			element.style.backgroundColor = thatcolor;
+			// element.style.left = ""+window.scrollY-300+"px";
+		});
+	</script>
 </html>
