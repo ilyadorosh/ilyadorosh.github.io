@@ -42,3 +42,12 @@ list-style: none;
     padding:30px;
     border-radius: 30px;
 }
+svg:hover {
+    fill: red;
+  }
+  
+  #cog{
+    position:absolute;
+    top:30px;
+    left: 40%;
+  }
