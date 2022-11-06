@@ -36,12 +36,9 @@ display:inline;
 list-style: none;
 }   
 
-img {
-    position: relative;
-    
-}
 
 #eg {
+    position: relative;
     padding:30px;
     border-radius: 30px;
 }

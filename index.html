@@ -42,6 +42,7 @@
 
 		<li><a class="button" href="https://1tensor.keybase.pub/">Keybase</a></li>
 		<li>I make music and publish on <a class="button" href="https://soundcloud.com/ilyadorosh">Soundcloud</a> </li>
+		<li><a href="https://www.reddit.com/user/1tensor/"><div><span style="padding-top: 4px; padding-left: 100px;">u/1tensor</span><div id="reddit" style="background-image: url('https://styles.redditmedia.com/t5_3xp87h/styles/profileIcon_snoob87e2724-e103-4237-b7dc-5e5cfb3146ca-headshot-f.png?width=256&height=256&crop=256:256,smart&s=61074dcacca362e817e30e681dbc1d37ffdeca52'); border-radius: 24px; height: 250px;"></div></div></a></li>
     </ul>
 </header>
 
@@ -344,6 +345,9 @@ gl_FragColor = vec4( color, 1.0 );
 			// console.log(thatcolor);
 			element.style.backgroundColor = thatcolor;
 			// element.style.left = ""+window.scrollY-300+"px";
+
+			var redelement = document.getElementById('reddit');
+			redelement.style.backgroundPositionX = window.scrollY+"px";
 		});
 	</script>
 </html>
