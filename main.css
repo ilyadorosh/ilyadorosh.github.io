@@ -48,6 +48,6 @@ svg:hover {
   
   #cog{
     position:absolute;
-    top:30px;
-    left: 40%;
+    top:-10px;
+    left: 50%;
   }
