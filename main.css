@@ -19,7 +19,7 @@ canvas {
 }
 
 #content {
-    background-color: rgb(0 0 0 / 58%);
+    background-color: rgba(255, 255, 255, 0.896);
     padding: 20px;
     border-radius: 10px;
     z-index: 3;
