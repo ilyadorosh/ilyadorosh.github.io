@@ -22,15 +22,16 @@ canvas {
 #content {
     background-color: rgba(255, 255, 255, 0.896);
     padding: 20px;
-    border-radius: 10px;
+    border-radius: 40px;
     z-index: 3;
-    box-shadow: rgba(0, 0, 0, 0.3) 0px 0px 10px;
+    box-shadow: rgba(0, 0, 0, 0.3) 0px 0px 100px;
 }
 
 section {
     box-shadow: rgba(0, 0, 0, 0.3) 0px 0px 10px;
     padding: 30px;
     margin-bottom: 20px;
+    border-radius: 20px;
 }
 
 body{
@@ -62,6 +63,9 @@ list-style: none;
     padding:30px;
     border-radius: 30px;
     opacity: 30%;
+    rotate: 90deg;
+    scale: 5;
+    z-index: -5;
 }
 svg:hover {
     fill: rgb(135, 251, 255);
