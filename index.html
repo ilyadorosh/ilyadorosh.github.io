@@ -93,7 +93,7 @@ __ __  ____      ______  __ __    ___  ____     ___  __
 		<li><a href="https://321pay.wordpress.com/2022/02/24/experience-power/">Egora</a>, the stock market of ideas.</li>
 		<!-- <img src="https://i.redd.it/91574q87l7y91.png"/> -->
 		<!-- <a href="https://1tensor.keybase.pub/egora_improvement.txt">s</a> -->
-		<img src="cropped.gif"/>
+		<!-- <img src="cropped.gif" width="200%"/> -->
 		<a href="https://egora-ilp.org/"><img id="eg" src="https://raw.githubusercontent.com/ilyadorosh/Egora/master/vectorpaint.svg"/></a></br>
 		<!-- <li><a href="https://zenith-star-sword.glitch.me/">Q-vote</li> -->
 	</ul>
@@ -145,7 +145,9 @@ void main( void ) {
 
 vec2 uv = ( gl_FragCoord.xy / u_resolution.y );
 
-float a = fract(sin(dot(floor(uv.xy*8.0 + u_mouse/1000. + atan(u_time)), vec2(5.364,6.357)))*max(sin(u_time/3.),.8)*(2.845+u_mouse.x/3000.));
+float a = fract(sin(dot(
+	floor(uv.xy*8.0 + u_mouse/1000. + sin(u_time/10.))
+	, vec2(5.364,6.357)))*u_time*(.245+u_mouse.x/3000.));
 a=2.*a-1.;
 vec3 color = vec3(a, -a, abs(a));
 color = inv(color);

@@ -1,6 +1,7 @@
 html {
     scroll-behavior: smooth;
     transition: 3px;
+    background-image: url(cropped.gif)
 }
 #glslCanvas {
     padding:0;
@@ -60,6 +61,7 @@ list-style: none;
 
 #eg {
     position: relative;
+    left: 50%;
     padding:30px;
     border-radius: 30px;
     opacity: 30%;
