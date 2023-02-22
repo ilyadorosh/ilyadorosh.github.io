@@ -4,3 +4,114 @@
 <li> I want to figure out how to effectively handle images on the DSP so that you can run neural networks on mobile devices. </li>
 <li> Create something like FaceApp, that was # 1 among free apps in the US. </li>
 </ol>
+
+<!-- Global player script -->
+<script>
+  !function(){"use strict";var e,t,o,a,r,n,i,u,c,s=!1,l=window,d=[0,2,4,5,7,9,11],f=[1,3,0,6,8,10,0],p=function(e,t,o,a){return v("sine",e,t,o,a)},v=function(t,o,r,n,i){Math.floor(r/12);var u=e.createGain(),c=880*Math.pow(2,(r-69)/12),s=n/127*.1*100/c,l=o||1e3*e.currentTime,d=i?(l+i+100)/1e3:0;u.gain.value=0,u.gain.setValueAtTime(0,l/1e3),u.gain.setTargetAtTime(s,(l+50)/1e3,.03),u.connect(e.destination);var f=e.createGain();f.gain.value=0,f.gain.setValueAtTime(0,l/1e3),f.gain.linearRampToValueAtTime(.2,(l+2e3)/1e3);var p=e.createGain();p.gain.value=.5,f.connect(p.gain);var v=e.createOscillator();v.frequency.value=5,v.connect(f),v.start(l/1e3),u.connect(p),p.connect(e.destination);for(var m=0;m<2;m++){var g=e.createOscillator();g.type=t,g.frequency.value=c*Math.pow(2,m),g.connect(u),g.start(l/1e3),d&&g.stop(d+.5)}var y=function(e){var t=e+.1;v.stop(t+100),u.gain.cancelScheduledValues(e),u.gain.setTargetAtTime(s,e,.03),u.gain.setTargetAtTime(0,t,.03)};if(d){var h=l+i+100;h>a&&(a=h),y(d-.1)}return i?null:y},m=function(e,a,i,c,s,l){var d=0;i.forEach(function(t){d+=t[0],p(1e3*o+d+e,t[1],t[2],t[3])}),l&&function(e,o,a,r){clearTimeout(n);var i=Number(o.dataset.octaveStart),c=(Number(o.dataset.octaveCount),e);a.forEach(function(e){c+=e[0],u.push([c,e[1],!0]);var t=r?Math.min(e[3],200):e[3];u.push([c+t-1,e[1],!1])}),u=u.sort(function(e,t){return e[0]-t[0]});var s=function(){for(var e=[0,0,1,1,2,3,3,4,4,5,5,6],a=performance.now()-t;u.length>0&&a>=u[0][0];){var r=u[0],c=Math.floor(r[1]/12)-i,l=r[1]%12,d=e[l],f=o.childNodes[0].childNodes[7*c+d],p=f&&1354>>l&1?f.childNodes[0]:f;p&&p.classList.toggle("press",r[2]),u.shift()}u.length>0&&(n=setTimeout(s,u[0][0]-a))};s()}(e,l,i,s),0!=c&&(r=setTimeout(function(){m(e+c,a,i,c,s,l)},a+e+c-performance.now()-1e3))};setTimeout(function(){[].slice.call(document.getElementsByClassName("piano")).forEach(function(t){for(var o=Number(t.dataset.octaveCount),a=Number(t.dataset.heightScale),r="",n=0;n<7*o;n++)r+='<div class="piano-white-key">'+(f[n%7]?'<div class="piano-black-key"></div>':"")+"</div>";t.innerHTML='<div class="piano-keys">'+r+'</div><a href="https://www.onemotion.com/chord-player/" target="_blank">Created with Chord Player</a>',t.style.paddingBottom=30*a/o+"%";var i=function(t){t.preventDefault();var o=t.target,a=!1;if("piano-black-key"==o.className&&(o=o.parentNode,a=!0),"piano-white-key"==o.className){t.target.classList.add("press");for(var r=Number(o.parentNode.parentNode.dataset.octaveStart),n=o,u=0;n=n.previousElementSibling;u++);g();var c=p(0,12*Math.floor(u/7+r)+(a?f[u%7]:d[u%7]),127),s=function(e){t.target!=e.target&&(v(t),i(e)||(l.addEventListener("mousemove",s),l.addEventListener("mouseup",v)))},v=function(){t.target.classList.remove("press");var o=e.currentTime;c(o),l.removeEventListener("mouseup",v),l.removeEventListener("mousemove",s)};return l.addEventListener("mouseup",v),l.addEventListener("mousemove",s),!0}};t.addEventListener("mousedown",i)})},0);var g=function(){if(!e){l.AudioContext||(l.AudioContext=l.webkitAudioContext||l.mozAudioContext),l.AudioContext&&(AudioContext.prototype.createGain||(AudioContext.prototype.createGain=AudioContext.prototype.createGainNode)),l.AudioBufferSourceNode&&(AudioBufferSourceNode.prototype.start||(AudioBufferSourceNode.prototype.start=AudioBufferSourceNode.prototype.noteOn),AudioBufferSourceNode.prototype.stop||(AudioBufferSourceNode.prototype.stop=AudioBufferSourceNode.prototype.noteOff));try{e=new AudioContext}catch(e){throw alert("Error ("+e+")"),e}}};l.toggleMusic=function(d,f,p,v,y){var h,A=document.getElementById(f);if(function(t){clearTimeout(r),clearTimeout(n),clearTimeout(i),t.querySelectorAll(".press").forEach(function(e){e.classList.remove("press")}),e&&(e.close(),e=null)}(A),d==c){if(s=!s,(h=d.querySelector(".play-icon"))&&h.classList.toggle("playing",s),!s)return}else s=!0;c&&((h=c.querySelector(".play-icon"))&&h.classList.remove("playing"));c=d,(h=d.querySelector(".play-icon"))&&h.classList.toggle("playing",s),u=[],g(),o=e.currentTime,t=performance.now(),a=0,m(0,t,p,v,y,A),0==v&&(i=setTimeout(function(){l.toggleMusic(d,f)},a+500))}}();
+</script>
+
+<!-- Global player style -->
+<style>
+  .piano {
+    border: solid 1px black;
+    background: black;
+    border-radius: .3vw;
+    position: relative;
+  }
+  .piano-keys {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    cursor: pointer;
+    border-radius: .3vw;
+    overflow: hidden;
+  }
+  .piano-white-key {
+    background: #EEE;
+    border-left: solid 1px rgba(0,0,0,.5);
+    box-shadow: inset .1vw 0 .1vw rgba(255,255,255,.2),inset -.1vw -.1vw .1vw rgba(0,0,0,.2);
+    border-radius: 0 0 .2vw .2vw;
+    margin-left: -1px;
+    position: relative;
+    flex: 1;
+  }
+  .piano-black-key {
+    background: black;
+    background-image: linear-gradient(to right bottom, transparent, rgba(255,255,255,.3));
+    border: solid 1px rgba(0,0,0,.5);
+    border-top: none;
+    border-radius: 0 0 .2vw .2vw;
+    height: 60%;
+    left: 65%;
+    right: -35%;
+    box-sizing: border-box;
+    position: absolute;
+    z-index: 1;
+  }
+  .piano-black-key::after {
+    content: ' ';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border: solid;
+    border-top: none;
+    border-width: 0 .3vw .6vw .3vw;
+    border-color: black rgba(0,0,0,.1) rgba(0,0,0,.2) rgba(255,255,255,.1);
+    box-sizing: border-box;
+  }
+  .piano-white-key.press, .piano-black-key.press {
+    background: red;
+  }
+  .piano a {
+    font-family: Arial;
+    color: black;
+    position: absolute;
+    text-decoration: none;
+    right: 0;
+    padding: 2px;
+    z-index: 1;
+    transition: opacity 1s ease-in;
+    opacity: 0;
+    font-size: 0;
+  }
+  .piano a::after {
+    content: 'i';
+    font-size: 11px;
+    background: white;
+    font-weight: bold;
+    padding: 0 4px;
+    border: solid 1px black;
+    border-radius: 100%;
+    margin-left: 5px;
+    box-shadow: 0 0 3px rgba(0,0,0,.5);
+  }
+  .piano:hover a {
+    opacity: 1;
+  }
+  .piano a:hover {
+    font-size: 11px;
+    background: white;
+  }
+  .play-icon {
+    border-color: transparent transparent transparent black;
+    border-style: solid;
+    border-width: 5px 0 5px 10px;
+    display: inline-block;
+    box-sizing: border-box;
+  }
+  .play-icon.playing {
+    border-color: black;
+  }
+</style>
+
+<!-- Piano component -->
+<div id="piano-1" class="piano" data-height-scale="1" data-octave-start="2" data-octave-count="5">
+</div>
+
+<br/>
+
+<!-- Button with song data -->
+<button onclick="toggleMusic(this, 'piano-1', [[0,57,89,300],[0,62,83,300],[0,64,79,300],[0,38,89,150],[450,38,89,120],[450,57,89,1180],[0,62,83,1180],[0,64,88,1180],[0,38,89,430],[450,38,89,120],[450,38,89,135],[300,40,89,120],[300,57,89,300],[0,60,83,300],[0,64,84,300],[0,41,89,150],[450,41,89,120],[450,57,89,1180],[0,60,84,1180],[0,64,77,1180],[0,41,89,430],[450,41,89,120],[450,41,89,135],[300,45,89,120],[300,57,89,300],[0,62,88,300],[0,65,84,300],[0,46,89,150],[450,46,89,120],[450,57,89,1480],[0,62,83,1480],[0,65,82,1480],[0,46,89,430],[450,46,89,120],[450,46,89,135],[300,48,89,120],[300,55,89,300],[0,58,87,300],[0,62,78,300],[0,43,89,150],[450,43,89,120],[450,55,89,1500],[0,58,87,1500],[0,62,80,1500],[0,43,89,430],[450,43,89,120],[300,43,89,120],[450,43,89,120]],9600,false);">
+  <span class="play-icon"></span> Song title
+</button>
