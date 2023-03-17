@@ -16,8 +16,8 @@ export function createDemo(divId) {
     const W=96, H=96;
     let demo;
     const modelDir = 'webgl_models8';
-    let target = '🦎';
-    let experiment = 'ex1';
+    let target = '🎄';
+    let experiment = 'ex3';
     let paused = false;
 
     const canvas = $('#demo-canvas');
